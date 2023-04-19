@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>주제 추천 AI</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>주제 추천 AI</h1>
+    <label for="api_key">API 키:</label>
+    <input type="text" id="api_key" name="api_key" required /><br /><br />
+    <label for="keywords">키워드:</label>
+    <input type="text" id="keywords" name="keywords" required />
+    <button onclick="search()">입력</button>
+    <br /><br />
+    <div id="result"></div>
+    <script>
+      // function search() {
+      //   const api_key = document.getElementById("api_key").value;
+      //   const keywords = document.getElementById("keywords").value;
+      //   const messages = [
+      //     { role: "system", content: "You are a helpful assistant." },
+      //     {
+      //       role: "user",
+      //       content: keywords + "에 대한 삼행시를 만들어줘.",
+      //     },
+      //   ];
+      //   const config = {
+      //     headers: {
+      //       Authorization: `Bearer ${api_key}`,
+      //       "Content-Type": "application/json",
+      //     },
+      //   };
+      //   const data = {
+      //     model: "gpt-3.5-turbo",
+      //     temperature: 0.5,
+      //     n: 1,
+      //     messages: messages,
+      //   };
+      //   axios
+      //     .post("https://api.openai.com/v1/chat/completions", data, config)
+      //     .then(function (response) {
+      //       let resultDiv = document.getElementById("result");
+      //       resultDiv.innerHTML = "";
+      //       response.data.choices.forEach(function (choice, index) {
+      //         resultDiv.innerHTML += `<div>${choice.message.content
+      //           .split("\n")
+      //           .join("<br/>")}</div>`;
+      //       });
+      //     })
+      //     .catch(function (error) {
+      //       console.error(error);
+      //     });
+      // }
+      function test() {
+        const contents = "한: 한강에서, 주: 주먹으로, 연: 연어를 잡았다.";
+        const test = contents.split(",");
+        console.log(test);
+      }
+      test();
+    </script>
+  </body>
+</html>
