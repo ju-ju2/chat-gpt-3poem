@@ -59,6 +59,11 @@ export default function MainPage() {
         setLoading(false);
       })
       .catch(function (error) {
+        setLoading(false);
+        Modal.error({
+          content:
+            "API 통신에 실패하였습니다. 자세한 사항은 로그를 확인해주세요",
+        });
         console.error(error);
       });
   };
