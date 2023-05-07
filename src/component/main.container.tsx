@@ -4,11 +4,14 @@ import { ChangeEvent, useState } from "react";
 import MainPageUI from "./main.presenter";
 
 export default function MainPage() {
-  // const [myapi, setApi] = useState("");
-  const myAPI = process.env.NEXT_PUBLIC_CHAT_API_KEY;
+  const [api, setApi] = useState("");
+  // const myAPI = process.env.NEXT_PUBLIC_CHAT_API_KEY;
   const [keywords, setKeywords] = useState<string>("");
   const [answerArr, setAnswerArr] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const onChangeApiKey = (e: ChangeEvent<HTMLInputElement>) => {
+    setApi(e.target.value);
+  };
   const onChangeKeywords = (e: ChangeEvent<HTMLInputElement>) => {
     setKeywords(e.target.value);
   };
@@ -34,14 +37,12 @@ export default function MainPage() {
     ];
     const config = {
       headers: {
-        Authorization: `Bearer ${myAPI}`,
-
+        Authorization: `Bearer ${api}`,
         "Content-Type": "application/json",
       },
     };
     const data = {
       model: "gpt-3.5-turbo",
-      // model: "text-davinci-003",
       // 창의성을 설정하는 값. 일반적으로 0.5이지만 토큰을 줄이려면 낮추는게 좋다.
       temperature: 0.5,
       max_tokens: 50,
@@ -51,13 +52,10 @@ export default function MainPage() {
     };
     await axios
       .post("https://api.openai.com/v1/chat/completions", data, config)
-      // .post("https://api.openai.com/v1/completions", data, config)
       .then((response) => {
         console.log(response.data?.choices);
         let answer = response.data?.choices[0].message.content;
         setAnswerArr(answer.split("," || "\n"));
-
-        // console.log(answerArr);
         setLoading(false);
       })
       .catch(function (error) {
@@ -67,6 +65,7 @@ export default function MainPage() {
   return (
     <MainPageUI
       loading={loading}
+      onChangeApiKey={onChangeApiKey}
       onChangeKeywords={onChangeKeywords}
       onClickSubmit={onClickSubmit}
       answerArr={answerArr}

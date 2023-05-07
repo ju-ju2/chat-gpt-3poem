@@ -49,14 +49,22 @@ export const Answer = styled.div`
   color: white;
 `;
 export const FooterWrapper = styled.div`
+  width: 500px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
+export const KeywordWrapper = styled.div`
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 `;
 export const MyInput = styled(Input)`
   font-size: 15px;
-  width: 300px;
+  width: 100%;
   height: 50px;
   margin-right: 10px;
 `;
